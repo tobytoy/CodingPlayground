@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solution</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script language="javascript">
+            var reverse = function(x) {
+                if ( x >= Math.pow(2, 31) | x < -Math.pow(2, 31) ){
+                    return 0
+                }else{
+                    sign = (x < 0)?-1:1;
+                    ans = 0
+                    while( x ){
+                        ans = ans * 10 + ( x % 10 )
+                        x = Math.floor( x / 10 )
+                    }
+                    ans *= sign
+                    return ans
+                }
+            };
+            
+            var input_x = 123
+            function main(){
+                document.getElementById("solution").innerText = reverse(input_x)
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" onclick="main()" value="Main function" /> <br>
+        Solution: <span id = "solution"></span>
+    </body>
+</html>
+
