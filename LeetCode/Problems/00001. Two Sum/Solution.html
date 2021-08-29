@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solution</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script language="javascript">
+            var twoSum = function(nums, target) {
+                for( i = 0 ; i < nums.length ; i++ ){                        
+                    for ( j = i + 1 ; j < nums.length ; j++ ){
+                        if ( (nums[i]+nums[j]) == target ){
+                            return [i,j]
+                        }
+                    }
+                }
+            }
+            
+            var input_nums = [2,7,11,15]
+            var input_target = 9
+            function main(){
+                document.getElementById("solution").innerText = twoSum(input_nums, input_target)
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" onclick="main()" value="Main function" /> <br>
+        Solution: <span id = "solution"></span>
+    </body>
+</html>
+
