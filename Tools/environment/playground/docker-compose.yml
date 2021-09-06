@@ -1,0 +1,13 @@
+version: "3"
+services:
+  playground:
+    image: toby-playground:v1
+    container_name: toby-cp
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    ports:
+      - "8822:22"
+    volumes:
+      - ./document:/home/toby/document
+
