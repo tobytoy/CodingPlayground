@@ -8,7 +8,7 @@ services:
     tty: true
     ports:
       - "3022:22"
-      - "5432:5000"
+      - "5432:3000"
       - "8088:8888"
     volumes:
       - ./document:/home/toby/document
