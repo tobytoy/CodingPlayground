@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 MAINTAINER toby
 
 RUN apt-get update && apt-get -y install sudo vim \
-    curl wget zip unzip \
+    curl wget zip unzip tmux git \
     ssh openssh-server
 
 RUN service ssh start
