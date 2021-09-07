@@ -20,6 +20,8 @@ RUN echo toby | sudo -S apt-get -y install python3.8 \
     nodejs npm \
     openjdk-8-jre-headless
 
+RUN pip3 install jupyterlab
+
 COPY ./packages/ ./packages/
 RUN echo toby | sudo -S chown toby:toby ./packages/kotlin.sh && chmod a+x ./packages/kotlin.sh
 RUN ./packages/kotlin.sh

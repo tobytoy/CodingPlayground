@@ -16,4 +16,18 @@
 # init:
     sudo chown -R toby:toby document/
 
+# git:
+## init:
+    git config --global user.name "toby"
+    git config --global user.email tobywang2021@gmail.com
+    git clone https://github.com/tobytoy/CodingPlayground.git
+## easy work loop:
+    git pull 
+    git add .
+    git commit 
+    git push
+
+# Jupyter:
+    jupyter lab --ip=*.*.*.* --no-browser --allow-root --NotebookApp.token='jupyter' --port=8888
+
 

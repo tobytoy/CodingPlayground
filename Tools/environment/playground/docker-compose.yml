@@ -9,6 +9,7 @@ services:
     ports:
       - "3022:22"
       - "5432:5000"
+      - "8088:8888"
     volumes:
       - ./document:/home/toby/document
       - /home/toby/docker_share:/workspace/docker_share
