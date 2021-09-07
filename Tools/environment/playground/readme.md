@@ -1,8 +1,14 @@
-# build image:
+# Docker part:
+## build image:
     docker build -t toby-playground:v1 .
 
-# run container:
+## run container:
     docker-compose up -d
+    (docker-compose down)
+
+## common check
+    docker-compose logs
+
 
 # connect ssh:
     ssh -p 8822 toby@127.0.0.1
@@ -12,6 +18,11 @@
     js hello.js
     kotlinc hello.kt -include-runtime -d hello.jar
     java -jar hello.jar
+    g++ hello.cpp
+    ./a.out
+
+# vscode issue:
+    .ssh -> known_hosts ( may kill reapeat part)
 
 # init:
     sudo chown -R toby:toby document/
@@ -21,11 +32,17 @@
     git config --global user.name "toby"
     git config --global user.email tobywang2021@gmail.com
     git clone https://github.com/tobytoy/CodingPlayground.git
+
 ## easy work loop:
     git pull 
     git add .
     git commit 
     git push
+
+## common check:
+    git config --list
+    git status
+    git log
 
 # Jupyter:
     jupyter lab --ip=*.*.*.* --no-browser --allow-root --NotebookApp.token='jupyter' --port=8888
