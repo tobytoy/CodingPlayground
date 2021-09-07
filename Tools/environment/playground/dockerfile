@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y install sudo vim \
     curl wget zip unzip tmux git \
     ssh openssh-server
 
-RUN service ssh start
+
 RUN useradd -ms /bin/bash toby && \
     echo 'toby:toby' | chpasswd && \
     usermod -aG sudo toby
@@ -31,8 +31,12 @@ RUN echo toby | sudo -S apt-get -y install python3.8 \
 RUN pip3 install jupyterlab
 
 COPY ./packages/ ./packages/
-RUN echo toby | sudo -S chown toby:toby ./packages/kotlin.sh && chmod a+x ./packages/kotlin.sh
-RUN ./packages/kotlin.sh
+RUN echo toby | sudo -S chown toby:toby ./packages/kotlin.sh && \
+    echo toby | sudo -S chmod a+x ./packages/kotlin.sh && \
+    echo toby | sudo -S chown toby:toby ./packages/nodejs.sh && \
+    echo toby | sudo -S chmod a+x ./packages/nodejs.sh
 
+RUN ./packages/kotlin.sh
+RUN ./packages/nodejs.sh
 
 ENTRYPOINT echo toby | sudo -S service ssh restart && /bin/bash
