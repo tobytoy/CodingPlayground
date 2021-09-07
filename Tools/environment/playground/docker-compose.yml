@@ -7,7 +7,8 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - "8822:22"
+      - "3022:22"
+      - "5432:5000"
     volumes:
       - ./document:/home/toby/document
-
+      - /home/toby/docker_share:/workspace/docker_share
