@@ -11,7 +11,7 @@ RUN TZ=Asia/Taipei \
     && dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get -y install sudo vim \
-    curl wget zip unzip tmux git \
+    curl wget zip unzip tmux git nginx \
     ssh openssh-server
 
 RUN useradd -ms /bin/bash $USER_NAME && \
