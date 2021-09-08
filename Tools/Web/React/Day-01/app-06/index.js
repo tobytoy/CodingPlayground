@@ -13,7 +13,7 @@ const loadDate = () => {
 const element = (
     <h1>
         條件:
-        {loadData()}
+        {loadDate()}
     </h1>
 )
 
