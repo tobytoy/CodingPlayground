@@ -5,10 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React 基本使用</title>
+    <title>Document</title>
 </head>
 
 <body>
+    <div>
+        1. 安裝 react <br>
+        npm i react react-dom <br>
+        2. 這個 create element 方法只需要知道
+    </div>
+
+    <div id="root"></div>
+
+    <!--  引入 javascript 文件  -->
+    <script src="./app/node_modules/react/umd/react.development.js"></script>
+    <script src="./app/node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script>
+        // 參數 1: element 名稱
+        // 參數 2: element 屬性
+        // 參數 3(含以後): element 的子節點
+
+        // let element = React.createElement('hi', null, "Hello React!!")
+
+        // let element = React.createElement(
+        //     'hi',
+        //     {
+        //         element: 'I am attributes',
+        //         id: 'id'
+        //     },
+        //     "Hello React!!"
+        // )
+
+        let element = React.createElement(
+            'hi',
+            {
+                element: 'I am attributes',
+                id: 'id'
+            },
+            "Hello React!!",
+            React.createElement('span', null, 'I am a sub-node.')
+        )
+
+
+        // 參數 1: 要 render 的 element
+        // 參數 2: 掛載點
+        ReactDOM.render(element, document.getElementById('root'))
+
+    </script>
 
 </body>
 
