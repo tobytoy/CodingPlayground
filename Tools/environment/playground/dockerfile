@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 MAINTAINER toby
+ENV USER_NAME toby
 
 RUN apt-get update \
     &&  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
@@ -13,16 +14,16 @@ RUN apt-get update && apt-get -y install sudo vim \
     curl wget zip unzip tmux git \
     ssh openssh-server
 
-RUN useradd -ms /bin/bash toby && \
-    echo 'toby:toby' | chpasswd && \
-    usermod -aG sudo toby
+RUN useradd -ms /bin/bash $USER_NAME && \
+    echo "$USER_NAME:$USER_NAME" | chpasswd && \
+    usermod -aG sudo $USER_NAME
 
-USER toby
-WORKDIR /home/toby
+USER $USER_NAME
+WORKDIR /home/$USER_NAME
 
-RUN echo toby | sudo -S apt-get -y install software-properties-common
-RUN echo toby | sudo -S add-apt-repository ppa:deadsnakes/ppa
-RUN echo toby | sudo -S apt-get -y install python3.8 \
+RUN echo $USER_NAME | sudo -S apt-get -y install software-properties-common
+RUN echo $USER_NAME | sudo -S add-apt-repository ppa:deadsnakes/ppa
+RUN echo $USER_NAME | sudo -S apt-get -y install python3.8 \
     python3-pip \
     openjdk-8-jre-headless
 
@@ -31,12 +32,14 @@ RUN pip3 install jupyterlab \
     opencv-python
 
 COPY ./packages/ ./packages/
-RUN echo toby | sudo -S chown toby:toby ./packages/kotlin.sh && \
-    echo toby | sudo -S chmod a+x ./packages/kotlin.sh && \
-    echo toby | sudo -S chown toby:toby ./packages/nodejs.sh && \
-    echo toby | sudo -S chmod a+x ./packages/nodejs.sh
+COPY ./document/ ./document/
+RUN echo $USER_NAME | sudo -S chown -R $USER_NAME:$USER_NAME ./packages && \
+    echo $USER_NAME | sudo -S chmod a+x ./packages/language.sh && \
+    echo $USER_NAME | sudo -S chown -R $USER_NAME:$USER_NAME /var/www/html
 
-RUN ./packages/kotlin.sh
-RUN ./packages/nodejs.sh
+RUN ./packages/language.sh
+RUN bash ./packages/init.sh
 
-ENTRYPOINT echo toby | sudo -S service ssh restart && /bin/bash
+ENTRYPOINT echo toby | sudo -S service ssh restart && \
+           echo toby | sudo -S service nginx restart && \
+           /bin/bash
