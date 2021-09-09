@@ -5,10 +5,15 @@
 ## run container:
     docker-compose up -d
     (docker-compose down)
+    docker-compose restart playground
 
 ## common check
     docker-compose logs
 
+## kill
+    docker image prune
+    docker rmi $(docker images -f “dangling=true” -q)
+    docker container prune
 
 # connect ssh:
     ssh -p 8822 toby@127.0.0.1
