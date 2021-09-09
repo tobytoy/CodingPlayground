@@ -17,6 +17,12 @@
     docker rmi $(docker images -f “dangling=true” -q)
     docker container prune
 
+# rabbitMQ
+    port: 5672, 15672
+
+# redis
+    port: 6379
+
 # connect ssh:
     ssh -p 8822 toby@127.0.0.1
 

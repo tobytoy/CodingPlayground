@@ -13,12 +13,16 @@ services:
     volumes:
       - ./document:/home/toby/document
       - /home/toby/docker_share:/workspace/docker_share
+    networks:
+      - toby-net
 
   toby-rabbit:
     image: rabbitmq:3-management
     container_name: toby-rabbit
     networks:
       - toby-net
+    ports:
+      - "15678:15672"
 
   toby-redis:
     image: redis
