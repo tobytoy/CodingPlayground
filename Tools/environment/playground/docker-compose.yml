@@ -1,14 +1,33 @@
-version: "3"
+version: "3.7"
 services:
   playground:
-    image: toby-playground:v1
+    build:
+      context: ./
+      dockerfile: dockerfile   # image: toby-playground:v1
     container_name: toby-cp
     command: /bin/bash
     stdin_open: true
     tty: true
     ports:
-       - "3022:22"
-
+      - "3022:22"
     volumes:
       - ./document:/home/toby/document
       - /home/toby/docker_share:/workspace/docker_share
+
+  toby-rabbit:
+    image: rabbitmq:3-management
+    container_name: toby-rabbit
+    networks:
+      - toby-net
+
+  toby-redis:
+    image: redis
+    container_name: toby-redis
+    networks:
+      - toby-net
+
+
+networks:
+  toby-net:
+    external:
+      name: toby-network

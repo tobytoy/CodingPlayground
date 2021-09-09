@@ -4,8 +4,10 @@
 
 ## run container:
     docker-compose up -d
-    (docker-compose down)
+    docker-compose build
     docker-compose restart playground
+    (docker-compose down)
+    docker network create toby-network
 
 ## common check
     docker-compose logs
