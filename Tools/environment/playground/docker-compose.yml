@@ -15,17 +15,6 @@ services:
     networks:
       - toby-net
 
-  toby-interface:
-    build:
-      context: ./
-      dockerfile: dockerfile-flask-restful
-    container_name: toby-interface
-    command: /bin/bash
-    ports:
-      - "3322:5000"
-    networks:
-      - toby-net
-
   toby-rabbit:
     image: rabbitmq:3.9.5-management
     container_name: toby-rabbit
@@ -33,14 +22,23 @@ services:
       - ./packages/begin:/workspace/begin
     networks:
       - toby-net
-    
+
+  # toby-interface:
+  #   build:
+  #     context: ./
+  #     dockerfile: dockerfile-flask-restful
+  #   container_name: toby-interface
+  #   command: /bin/bash
+  #   ports:
+  #     - "3322:5000"
+  #   networks:
+  #     - toby-net
 
 #  toby-redis:
 #    image: redis
 #    container_name: toby-redis
 #    networks:
 #      - toby-net
-
 
 networks:
   toby-net:

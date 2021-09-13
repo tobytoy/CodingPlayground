@@ -34,6 +34,9 @@
     g++ hello.cpp
     ./a.out
 
+# add path
+    PATH=$PATH:/sbin
+
 # vscode issue:
     .ssh -> known_hosts ( may kill reapeat part)
 
