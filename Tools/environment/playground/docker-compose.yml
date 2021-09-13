@@ -5,6 +5,7 @@ services:
       context: ./
       dockerfile: dockerfile-cp   # image: toby-playground:v1
     container_name: toby-cp
+    restart: always
     command: /bin/bash
     stdin_open: true
     tty: true
@@ -18,10 +19,40 @@ services:
   toby-rabbit:
     image: rabbitmq:3.9.5-management
     container_name: toby-rabbit
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: toby
+      RABBITMQ_DEFAULT_PASS: toby
     volumes:
       - ./packages/begin:/workspace/begin
     networks:
       - toby-net
+
+  toby-mongo:
+    image: mongo:latest
+    container_name: toby-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: toby
+      MONGO_INITDB_ROOT_PASSWORD: toby
+    volumes:
+      - ./packages/begin:/workspace/begin
+    networks:
+      - toby-net
+
+  toby-mongo-express:
+    image: mongo-express:latest
+    container_name: toby-mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: toby
+      ME_CONFIG_MONGODB_ADMINPASSWORD: toby
+      ME_CONFIG_MONGODB_URL: mongodb://toby:toby@proj-mongo:27017/
+    volumes:
+      - ./packages/begin:/workspace/begin
+    networks:
+      - toby-net
+
 
   # toby-interface:
   #   build:
